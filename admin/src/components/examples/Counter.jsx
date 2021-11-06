@@ -1,5 +1,8 @@
 import React from "react";
-const Counter = () => {
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+const Counter = (props) => {
+  console.log(props);
   //   let count = 5;
   const [count, setCount] = React.useState(5);
 
@@ -13,13 +16,23 @@ const Counter = () => {
     // count++;
     // alert(count);
   };
+  let isLight = props.theme == "light";
   return (
-    <div>
+    <div
+      style={{
+        color: isLight ? "black" : "white",
+        backgroundColor: isLight ? "white" : "black",
+      }}
+    >
       <h5>My Counter</h5>
-      <button className="btn btn-danger" onClick={countDown}>
+      <Button variant="contained" color="secondary" onClick={countDown}>
         -
-      </button>{" "}
-      {count} <button onClick={countUp}>+</button> <br />
+      </Button>{" "}
+      {count}{" "}
+      <Button variant="contained" color="primary" onClick={countUp}>
+        <AddIcon />
+      </Button>{" "}
+      <br />
       Current count value is {count}
       {count < 5 && <div>Count is in dangerous state</div>}
       {count < 5 ? <div>Red Counter</div> : <div>Green Counter</div>}
