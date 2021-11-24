@@ -3,8 +3,8 @@ import SingleProduct from "./SingleProduct";
 import axios from "axios";
 const Products = () => {
   const [products, setProducts] = React.useState([
-    { name: "Lenovo", price: 10 },
-    { name: "Dell", price: 20 },
+    // { name: "Lenovo", price: 10 },
+    // { name: "Dell", price: 20 },
   ]);
   const getData = async () => {
     try {

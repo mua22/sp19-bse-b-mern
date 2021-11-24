@@ -4,22 +4,37 @@ import Counter from "./components/examples/Counter";
 import SortTest from "./components/SortTest";
 import React from "react";
 import Products from "./components/products/Products";
+import { Route, Routes } from "react-router";
+import Dashboard from "./views/Dashboard";
+import { Link } from "react-router-dom";
+import Login from "./views/auth/Login";
+import SingleProductDetails from "./components/products/SingleProductDetails";
 
 function App() {
   return (
     <div className="App">
-      <h2>Hello B Section</h2>
-      <Products />
-      {/* <SortTest /> */}
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/products">Products</Link>
+        </li>
 
-      {/* <Counter
-        theme="light"
-        country="pakistan"
-        student={{ name: "Usman", Salary: 500 }}
-      />
-      <Counter theme="dark" />
-      <Counter theme="light" />
-      <Counter theme="dark" /> */}
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      </ul>
+      <Routes>
+        <Route
+          path="/products/details/:id"
+          element={<SingleProductDetails />}
+        />
+        <Route path="/products" element={<Products />} />
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
     </div>
   );
 }
