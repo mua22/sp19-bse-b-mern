@@ -1,6 +1,7 @@
 import React from "react";
 import SingleProduct from "./SingleProduct";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const Products = () => {
   const [products, setProducts] = React.useState([
     // { name: "Lenovo", price: 10 },
@@ -18,6 +19,7 @@ const Products = () => {
 
   return (
     <div>
+      <Link to="/products/create">Create New Product</Link>
       {products.map((p) => (
         <SingleProduct product={p} />
       ))}

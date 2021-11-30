@@ -9,6 +9,7 @@ import Dashboard from "./views/Dashboard";
 import { Link } from "react-router-dom";
 import Login from "./views/auth/Login";
 import SingleProductDetails from "./components/products/SingleProductDetails";
+import ProductForm from "./components/products/ProductForm";
 
 function App() {
   return (
@@ -30,9 +31,9 @@ function App() {
           path="/products/details/:id"
           element={<SingleProductDetails />}
         />
+        <Route path="/products/create" element={<ProductForm />} />
         <Route path="/products" element={<Products />} />
         <Route path="/login" element={<Login />} />
-
         <Route path="/" element={<Dashboard />} />
       </Routes>
     </div>
