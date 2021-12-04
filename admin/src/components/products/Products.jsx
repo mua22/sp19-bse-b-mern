@@ -21,7 +21,7 @@ const Products = () => {
     <div>
       <Link to="/products/create">Create New Product</Link>
       {products.map((p) => (
-        <SingleProduct product={p} />
+        <SingleProduct product={p} onDelete={getData} />
       ))}
     </div>
   );

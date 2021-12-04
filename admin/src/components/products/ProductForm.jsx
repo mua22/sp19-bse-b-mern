@@ -1,28 +1,50 @@
 import { Button, TextField } from "@mui/material";
 import React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 const ProductForm = () => {
   const [product, setProduct] = React.useState({
-    name: "Lenovo",
-    price: 429,
-    color: "white",
-    department: "Clothing",
-    description: "The Football Is Good For Training And Recreational Purposes",
+    name: "",
+    price: "",
+    color: "",
+    department: "",
+    description: "T",
   });
   const navigate = useNavigate();
+  const params = useParams();
+  const getData = async () => {
+    if (params.id)
+      try {
+        let response = await axios.get(
+          "https://usman-recipes.herokuapp.com/api/products/" + params.id
+        );
+        setProduct(response.data);
+      } catch (err) {}
+  };
+  React.useEffect(getData, []);
   return (
     <div>
-      <h3>Product Form</h3>
+      <h3>{params.id ? "Edit Product" : "Create Product"}</h3>
       <Button
         variant="contained"
         onClick={(e) => {
-          axios
-            .post("https://usman-recipes.herokuapp.com/api/products", product)
-            .then((res) => {
-              console.log(res.data);
-              navigate("/products");
-            });
+          if (params.id)
+            axios
+              .put(
+                "https://usman-recipes.herokuapp.com/api/products/" + params.id,
+                product
+              )
+              .then((res) => {
+                console.log(res.data);
+                navigate("/products");
+              });
+          else
+            axios
+              .post("https://usman-recipes.herokuapp.com/api/products", product)
+              .then((res) => {
+                console.log(res.data);
+                navigate("/products");
+              });
         }}
       >
         Save
